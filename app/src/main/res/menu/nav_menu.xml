@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_Dispositivos"
+            android:icon="@drawable/devices"
+            android:title="Dispositivos"/>
+
+        <item
+            android:id="@+id/nav_Red_Social"
+            android:icon="@drawable/red_social"
+            android:title="Red Social"/>
+
+        <item
+            android:id="@+id/nav_Mensajes"
+            android:icon="@drawable/mensajes"
+            android:title="Mensajes"/>
+
+        <item
+            android:id="@+id/nav_Lanazamientos"
+            android:icon="@drawable/new_releases"
+            android:title="Nuevos Lanzamientos"/>
+
+
+        <item
+            android:id="@+id/nav_Agregar"
+            android:icon="@drawable/clip"
+            android:title="Agregar"/>
+
+        <item
+            android:id="@+id/nav_Security"
+            android:icon="@drawable/system_security"
+            android:title="Seguridad"/>
+
+
+    </group>
+
+</menu>
