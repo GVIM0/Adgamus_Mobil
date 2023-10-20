@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        binding.navigationDrawer.setOnItemSelectedListener(this)
+        binding.navigationDrawer.setNavigationItemSelectedListener(this)
 
         binding.bottomNavigation.background = null
 
@@ -54,11 +54,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             // Agregar fragmentos como en los botones de abajo
-            R.id.nav_Dispositivos -> Toast.makeText(this, "Dispositivos", Toast.LENGTH_LONG).show()
             R.id.nav_Red_Social-> openFragment(RedFragment())
             R.id.nav_Mensajes -> openFragment(MensajesFragment())
             R.id.nav_Lanazamientos -> Toast.makeText(this, "Lanzamientos", Toast.LENGTH_LONG).show()
-            R.id.nav_Agregar -> Toast.makeText(this, "Agregar", Toast.LENGTH_LONG).show()
             R.id.nav_Security -> Toast.makeText(this, "Seguridad", Toast.LENGTH_LONG).show()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

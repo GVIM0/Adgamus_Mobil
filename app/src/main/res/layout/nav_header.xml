@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="190dp"
+    android:layout_height="150dp"
     android:gravity="top"
-    android:padding="25dp"
+    android:padding="16dp"
     android:background="@color/green"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -13,12 +13,11 @@
         android:layout_height="wrap_content"
         android:text="Usuario"
         android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:gravity="bottom"/>
+        android:layout_gravity="center" />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/user"
         android:layout_marginTop="10dp"/>
