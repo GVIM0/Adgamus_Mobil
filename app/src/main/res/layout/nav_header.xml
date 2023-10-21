@@ -8,19 +8,20 @@
     android:background="@color/green"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+
+    <ImageView
+        android:layout_width="101dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/user" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Usuario"
+        android:layout_marginStart="21dp"
+        android:textSize="18sp"
         android:textColor="@color/white"
-        android:layout_gravity="center" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/user"
-        android:layout_marginTop="10dp"/>
-
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>
