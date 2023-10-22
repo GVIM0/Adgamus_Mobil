@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         fragmentManager = supportFragmentManager
         openFragment(HomeFragment())
-
     }
 
 
