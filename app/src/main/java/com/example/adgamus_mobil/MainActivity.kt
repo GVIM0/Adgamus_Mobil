@@ -5,14 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.adgamus_mobil.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
@@ -42,8 +40,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
-                R.id.bottom_pendingActions -> openFragment(PendientesFragment())
-                R.id.bottom_profile -> openFragment(PerfilFragment())
+                R.id.bottom_Plantas -> openFragment(PlantasFragment())
+                R.id.bottom_Animales -> openFragment(AnimalesFragment())
+                R.id.bottom_recursos -> openFragment(RecursosFragment())
             }
             true
         }
@@ -57,8 +56,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // Agregar fragmentos como en los botones de abajo
             R.id.nav_Red_Social-> openFragment(RedFragment())
             R.id.nav_Mensajes -> openFragment(MensajesFragment())
-            R.id.nav_Lanazamientos -> Toast.makeText(this, "Lanzamientos", Toast.LENGTH_LONG).show()
-            R.id.nav_Security -> Toast.makeText(this, "Seguridad", Toast.LENGTH_LONG).show()
+            R.id.nav_Bot -> Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
+            R.id.nav_Ajustes -> openFragment(AjustesFragment())
+            R.id.nav_logout -> Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_LONG).show()
+            R.id.icon_edit -> Toast.makeText(this, "Editar usuario", Toast.LENGTH_LONG).show()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true

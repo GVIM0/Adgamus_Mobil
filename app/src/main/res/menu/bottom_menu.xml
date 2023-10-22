@@ -4,17 +4,24 @@
     <item
         android:id="@+id/bottom_home"
         android:title="Home"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/hogar"/>
 
     <item
-        android:id="@+id/bottom_pendingActions"
-        android:title="Pendientes"
-        android:icon="@drawable/pending_actions"/>
+        android:id="@+id/bottom_Plantas"
+        android:title="Plantas"
+        android:icon="@drawable/planta"/>
 
 
     <item
-        android:id="@+id/bottom_profile"
-        android:title="Perfil"
-        android:icon="@drawable/person"/>
+        android:id="@+id/bottom_Animales"
+        android:title="Animales"
+        android:icon="@drawable/vaca"/>
+
+    <item
+        android:id="@+id/bottom_recursos"
+        android:title="Recursos"
+        android:icon="@drawable/organico"/>
+
+
 
 </menu>

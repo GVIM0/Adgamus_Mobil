@@ -17,19 +17,17 @@
             android:title="Mensajes"/>
 
         <item
-            android:id="@+id/nav_Lanazamientos"
-            android:icon="@drawable/new_releases"
-            android:title="Lanzamientos"/>
+            android:id="@+id/nav_Bot"
+            android:icon="@drawable/bot"
+            android:title="Chat Bot"/>
 
         <item
-            android:id="@+id/nav_Security"
-            android:icon="@drawable/system_security"
-            android:title="Seguridad"/>
+            android:id="@+id/nav_Ajustes"
+            android:icon="@drawable/configuracion"
+            android:title="Ajustes"/>
 
 
     </group>
-
-
 
 
     <item android:title="">
