@@ -1,11 +1,11 @@
 package com.example.adgamus_mobil
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,7 +14,7 @@ import com.example.adgamus_mobil.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
+class Menu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
 
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: ActivityMainBinding
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
 
         // Quita el fondo (me quito 3 horas de vida y 5-6 videos ademas de consultas a chatGPT para encontrarlo)
-       // binding.bottomNavigation.background = null
+        // binding.bottomNavigation.background = null
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         openFragment(HomeFragment())
 
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
