@@ -37,7 +37,7 @@
             app:menu="@menu/bottom_menu"
             app:itemIconSize="32dp"
             app:itemIconTint="@drawable/item_selector"
-            app:itemRippleColor="@android:color/transparent"
+            app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
             app:labelVisibilityMode="unlabeled"/>
 
         <FrameLayout
