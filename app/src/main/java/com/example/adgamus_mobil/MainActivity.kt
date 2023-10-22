@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
 
-        binding.bottomNavigation.background = null
+        // Quita el fondo (me quito 3 horas de vida y 5-6 videos ademas de consultas a chatGPT para encontrarlo)
+       // binding.bottomNavigation.background = null
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
