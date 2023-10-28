@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F2F2F2"
-    tools:context=".RegisterMain">
+    tools:context=".LoginMain">
 
     <ImageView
         android:id="@+id/Inicio_img"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
-        android:text="Registrate con\nuna cuenta"
+        android:text="Hola, \nInicia Sesión"
         android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="¿No recuerdas tu contraseña? Recuperala aqui"
+            android:onClick="Menu_Principal"
             android:textAlignment="center" />
 
         <LinearLayout
