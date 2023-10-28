@@ -5,21 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class MainActivity : AppCompatActivity() {
+class LoginMain : AppCompatActivity() {
 
-    lateinit var Comenzar: Button
+    lateinit var Login: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login_main)
 
         // Busca el boton comenzar del inicio
-        Comenzar = findViewById(R.id.Comenzar)
+        Login = findViewById(R.id.Btn_Login)
 
 
-        Comenzar.setOnClickListener {
-            val intento = Intent(this, LoginMain::class.java)
+        Login.setOnClickListener {
+            val intento = Intent(this, Menu_Principal::class.java)
             startActivity(intento)
         }
-    }
 
+    }
 }

@@ -72,7 +72,7 @@
         android:layout_height="65dp"
         android:background="@drawable/bkg_b_comenzar"
         android:gravity="center"
-        android:text="Comenzar"
+        android:text="   Comenzar"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -10,20 +10,20 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.adgamus_mobil.databinding.ActivityMenuPrincipalBinding
+import com.example.adgamus_mobil.databinding.MenuPrincipalBinding
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
 class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
 
     private lateinit var fragmentManager: FragmentManager
-    private lateinit var binding: ActivityMenuPrincipalBinding
+    private lateinit var binding: MenuPrincipalBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_principal)
+        setContentView(R.layout.menu_principal)
 
-        binding = ActivityMenuPrincipalBinding.inflate(layoutInflater)
+        binding = MenuPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
