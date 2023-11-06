@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="-28dp"
         android:layout_marginEnd="1dp"
         android:orientation="vertical"
         android:padding="32dp"
@@ -113,7 +114,6 @@
             android:textSize="18dp" />
 
 
-
         <TextView
             android:id="@+id/Contraseña_log"
             android:layout_width="match_parent"
@@ -139,15 +139,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Btn_Register"
+            style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/bottom_bkg"
-            style="@android:style/Widget.Button"
+            android:text="Registrame"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="Registrame" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="-18dp"
         android:layout_marginEnd="1dp"
         android:orientation="vertical"
         android:padding="32dp"
@@ -94,8 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="¿No recuerdas tu contraseña? Recuperala aqui"
             android:onClick="Menu_Principal"
+            android:text="¿Aun no tienes una cuenta? Registrate aqui"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -196,15 +197,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/Btn_Login"
+            style="@android:style/Widget.Button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bottom_bkg"
-            style="@android:style/Widget.Button"
+            android:text="Login"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="Login" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
