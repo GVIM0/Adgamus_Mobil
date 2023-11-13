@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="-28dp"
+        android:layout_marginTop="-42dp"
         android:layout_marginEnd="1dp"
         android:orientation="vertical"
         android:padding="32dp"
@@ -91,17 +91,17 @@
             android:textSize="18dp" />
 
         <TextView
-            android:id="@+id/Usuario_log"
+            android:id="@+id/Contraseña_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
-            android:text="Usuario"
+            android:text="Contraseña"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/Usuario_edit_log"
+            android:id="@+id/Contraseña_edit_log"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"
@@ -115,17 +115,17 @@
 
 
         <TextView
-            android:id="@+id/Contraseña_log"
+            android:id="@+id/Confi_Contraseña_log"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
-            android:text="Contraseña"
+            android:text="Confirmar Contraseña"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/Contraseña_edit_log"
+            android:id="@+id/Conf_Contraseña_edit_log"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="12dp"
