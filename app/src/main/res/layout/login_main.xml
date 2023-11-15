@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="-18dp"
+        android:layout_marginTop="-24dp"
         android:layout_marginEnd="1dp"
         android:orientation="vertical"
         android:padding="32dp"
@@ -62,7 +62,7 @@
             android:background="@drawable/edittext_login_bkg"
             android:ems="10"
             android:hint="Introduce tu Email"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textColor="#707070"
             android:textSize="18dp" />
@@ -85,7 +85,7 @@
             android:background="@drawable/edittext_login_bkg"
             android:ems="10"
             android:hint="Introduce tu Contraseña"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:padding="12dp"
             android:textColor="#707070"
             android:textSize="18dp" />

@@ -61,8 +61,8 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/edittext_login_bkg"
             android:ems="10"
+            android:inputType="textEmailAddress"
             android:hint="Introduce tu Email"
-            android:inputType="text"
             android:padding="12dp"
             android:textColor="#707070"
             android:textSize="18dp" />
@@ -107,8 +107,8 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/edittext_login_bkg"
             android:ems="10"
-            android:hint="Introduce tu Nombre de Usuario"
-            android:inputType="text"
+            android:hint="Introduce tu Contraseña"
+            android:inputType="textPassword"
             android:padding="12dp"
             android:textColor="#707070"
             android:textSize="18dp" />
@@ -131,8 +131,8 @@
             android:layout_marginTop="12dp"
             android:background="@drawable/edittext_login_bkg"
             android:ems="10"
-            android:hint="Introduce tu Contraseña"
-            android:inputType="text"
+            android:hint="Confirma tu Contraseña"
+            android:inputType="textPassword"
             android:padding="12dp"
             android:textColor="#707070"
             android:textSize="18dp" />
