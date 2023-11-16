@@ -12,4 +12,14 @@
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@android:color/transparent</item>
     </style>
+
+
+    <style name="Switch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">#090808</item>
+        <item name="colorSwitchThumbNormal">#FFFFFF</item>
+        <item name="android:colorForeground">#531B1B</item>
+    </style>
+
+
+
 </resources>
