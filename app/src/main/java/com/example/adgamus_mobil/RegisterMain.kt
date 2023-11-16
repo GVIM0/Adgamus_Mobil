@@ -40,7 +40,7 @@ class RegisterMain : AppCompatActivity() {
         Registrame.setOnClickListener {
 
             // Verificación de existencia de correo en la base de datos
-            val urlVerificacion = "http://172.24.208.1/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
+            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
 
             val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
                     if (response.trim().equals("No hay registros", ignoreCase = true)) {
@@ -52,7 +52,7 @@ class RegisterMain : AppCompatActivity() {
                             if (Contraseña.text.toString() == Conf_Contraseña.text.toString()) {
 
                                 // URL Base de datos inserción
-                                val urlRegistro = "http://172.24.208.1/Adgamus_Movil/Insertar.php"
+                                val urlRegistro = "http://192.168.101.11/Adgamus_Movil/Insertar.php"
 
                                 val queue = Volley.newRequestQueue(this)
 

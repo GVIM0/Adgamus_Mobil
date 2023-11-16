@@ -47,7 +47,7 @@ class LoginMain : AppCompatActivity() {
         Login.setOnClickListener {
 
             // Verificación de existencia de correo en la base de datos
-            val urlVerificacion = "http://172.24.208.1/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
+            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
             // Código de registro
             if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
                 val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
