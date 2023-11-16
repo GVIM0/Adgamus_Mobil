@@ -99,7 +99,7 @@ class LoginMain : AppCompatActivity() {
             val alertDialog: AlertDialog = builder.create()
 
             errorClose.setOnClickListener {
-                alertDialog.dismiss()ss
+                alertDialog.dismiss()
                 Toast.makeText(this, "Cerrado", Toast.LENGTH_LONG).show()
             }
 
