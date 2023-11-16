@@ -39,43 +39,63 @@ class RegisterMain : AppCompatActivity() {
 
         Registrame.setOnClickListener {
 
-            // Datos DB
-            if(EmailValido(Email.text.toString()) && Nombre.text.isNotBlank() && Contraseña.text.isNotBlank() && Conf_Contraseña.text.isNotBlank()) {
+            // Verificación de existencia de correo en la base de datos
+            val urlVerificacion = "http://172.24.208.1/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
 
-                if (Contraseña.text.toString() == Conf_Contraseña.text.toString()) {
+            val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
+                    if (response.trim().equals("No hay registros", ignoreCase = true)) {
+                        // El correo no existe en la base de datos, proceder con el registro
 
-                    // URL Base de datos insercion
-                    val url = "http://172.24.208.1/Adgamus_Movil/Insertar.php"
+                        // Código de registro
+                        if (EmailValido(Email.text.toString()) && Nombre.text.isNotBlank() && Contraseña.text.isNotBlank() && Conf_Contraseña.text.isNotBlank()) {
 
-                    val queue = Volley.newRequestQueue(this)
+                            if (Contraseña.text.toString() == Conf_Contraseña.text.toString()) {
 
-                    val resultadoPost = object: StringRequest(Request.Method.POST, url, Response.Listener<String> { response ->
+                                // URL Base de datos inserción
+                                val urlRegistro = "http://172.24.208.1/Adgamus_Movil/Insertar.php"
 
-                        Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_LONG).show()
+                                val queue = Volley.newRequestQueue(this)
 
-                        // Cambio de actividad
-                        val intento = Intent(this, LoginMain::class.java)
-                        startActivity(intento)
+                                val resultadoPost = object : StringRequest(Request.Method.POST, urlRegistro, Response.Listener<String> { response ->
+                                        Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_LONG).show()
 
-                        }, Response.ErrorListener { error ->
-                            Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
-                        }) {
-                        override fun getParams(): MutableMap<String, String> {
-                            val parametros = HashMap<String, String>()
-                            parametros.put("CorreoUsuario", Email.text.toString())
-                            parametros.put("NombreUsuario", Nombre.text.toString())
-                            parametros.put("Contraseña", Conf_Contraseña.text.toString())
-                            return parametros
+                                // Cambio de actividad
+                                val intento = Intent(this, LoginMain::class.java)
+                                startActivity(intento)
+
+                                Email.setText("")
+                                Nombre.setText("")
+                                Contraseña.setText("")
+                                Conf_Contraseña.setText("")
+
+                                }, Response.ErrorListener { error ->
+                                        Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                                }) {
+                                    override fun getParams(): MutableMap<String, String> {
+                                        val parametros = HashMap<String, String>()
+                                        parametros["CorreoUsuario"] = Email.text.toString()
+                                        parametros["NombreUsuario"] = Nombre.text.toString()
+                                        parametros["Contraseña"] = Conf_Contraseña.text.toString()
+                                        return parametros
+                                    }
+                                }
+                                queue.add(resultadoPost)
+                            } else {
+                                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
                         }
+                    } else {
+                        // El correo ya existe en la base de datos, mostrar un mensaje de error
+                        Toast.makeText(this, "El correo ya está registrado", Toast.LENGTH_SHORT).show()
                     }
-                    queue.add(resultadoPost)
-                } else {
-                    Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-                }
+                }, { error ->
+                    Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                })
+            val queue = Volley.newRequestQueue(this)
+            queue.add(verificacionRequest)
 
-            } else {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
-            }
         }
 
     }
@@ -83,5 +103,5 @@ class RegisterMain : AppCompatActivity() {
         val emailRegex = Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})")
         return emailRegex.matches(email)
     }
-
 }
+

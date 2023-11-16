@@ -48,6 +48,11 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
         fragmentManager = supportFragmentManager
         openFragment(HomeFragment())
+
+
+        // Traer la informacion del usuario al drawer lateral
+
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

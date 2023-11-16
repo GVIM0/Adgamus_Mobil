@@ -46,9 +46,28 @@ class LoginMain : AppCompatActivity() {
         // Inicio de sesion
         Login.setOnClickListener {
 
-            // DB
-            if(EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()){
+            // Verificación de existencia de correo en la base de datos
+            val urlVerificacion = "http://172.24.208.1/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
+            // Código de registro
+            if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
+                val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
 
+                    if (response.trim().equals("No hay registros", ignoreCase = true)) {
+                        // El correo no existe en la base de datos
+                        Toast.makeText(this,"Registrate e inicia sesion", Toast.LENGTH_LONG).show()
+                    } else {
+                        // Cambio de actividad
+                        val intento = Intent(this, Menu_Principal::class.java)
+                        startActivity(intento)
+                        Toast.makeText(this,"Bienvenid@ a Adgamus",Toast.LENGTH_LONG).show()
+                        Email.setText("")
+                        Contraseña.setText("")
+                    }
+                }, { error ->
+                    Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                })
+                val queue = Volley.newRequestQueue(this)
+                queue.add(verificacionRequest)
             } else {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
             }
