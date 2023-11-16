@@ -62,7 +62,7 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_Mensajes -> openFragment(MensajesFragment())
             R.id.nav_Bot -> Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
             R.id.nav_Ajustes -> openFragment(AjustesFragment())
-            R.id.nav_Perfil -> Toast.makeText(this, "Editar usuario", Toast.LENGTH_LONG).show()
+            R.id.nav_Perfil -> openFragment(PerfilFragment())
             R.id.nav_logout -> Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_LONG).show()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

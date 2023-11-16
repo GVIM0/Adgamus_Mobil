@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_brown"
+    tools:context=".AjustesFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/Botton_Regresar"
+            android:layout_width="82dp"
+            android:layout_height="64dp"
+            android:padding="15dp"
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="onBackButtonClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:layout_centerInParent="true"
+            android:textColor="#FF000000"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_person_pin_24">
+            </ImageView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="12dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:background="@drawable/round_back_secundario_100"
+                android:textAllCaps="false"
+                android:text="Editar"
+                android:textColor="#F1EBDF" />
+
+            <TextView
+                android:id="@+id/Nombre_Usus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Nombre_Usuario"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/Correo_Usu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo Usuario"
+                android:textStyle="italic"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="@drawable/layout_style_2"
+                android:padding="15dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:background="@drawable/layout_style_2"
+                android:padding="15dp">
+
+
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Aceptar_Cambios"
+
+                android:layout_width="142dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+
+                android:background="@drawable/round_back_secundario_100"
+                android:enabled="false"
+                android:text="Aceptar cambios"
+
+                android:textAllCaps="false"
+                android:textColor="#F1EBDF"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

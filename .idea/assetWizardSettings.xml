@@ -307,7 +307,11 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
+<<<<<<< HEAD
                                       <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/error_outline/baseline_error_outline_24.xml" />
+=======
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/person_pin/baseline_person_pin_24.xml" />
+>>>>>>> origin/Look_and_feel
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -317,8 +321,13 @@
                         </option>
                         <option name="values">
                           <map>
+<<<<<<< HEAD
                             <entry key="color" value="ffffff" />
                             <entry key="outputName" value="error" />
+=======
+                            <entry key="color" value="741e15" />
+                            <entry key="outputName" value="baseline_person_pin_24" />
+>>>>>>> origin/Look_and_feel
                             <entry key="sourceFile" value="C:\Users\Windows\Downloads\vaca.svg" />
                           </map>
                         </option>
