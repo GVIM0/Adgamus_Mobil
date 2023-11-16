@@ -61,7 +61,7 @@ class LoginMain : AppCompatActivity() {
 
                     if (response.trim().equals("No hay registros", ignoreCase = true)) {
                         // El correo no existe en la base de datos
-                        Toast.makeText(this, "Registrate para acceder", Toast.LENGTH_SHORT).show()
+                        showErrorDialog("Registrate para acceder a Adgamus y disfrutar de todas tus nuevas herramientas")
                     } else {
                         // Cambio de actividad
                         val intento = Intent(this, Menu_Principal::class.java)
@@ -76,7 +76,7 @@ class LoginMain : AppCompatActivity() {
                 val queue = Volley.newRequestQueue(this)
                 queue.add(verificacionRequest)
             } else {
-                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+                showErrorDialog("Completa todos los campos")
             }
 
         }
@@ -88,27 +88,22 @@ class LoginMain : AppCompatActivity() {
         return emailRegex.matches(email)
     }
 
-    private fun showErrorDialog() {
-        val errorConstraintLayout: ConstraintLayout = findViewById(R.id.ErrorDialogLayout)
-        val view = LayoutInflater.from(this).inflate(R.layout.error_dialog, errorConstraintLayout)
-        val errorClose: Button? = view?.findViewById(R.id.errorClose)
+    private fun showErrorDialog(message: String) {
+        val inflater = layoutInflater
+        val view = inflater.inflate(R.layout.error_dialog, null)
+        val textViewError: TextView = view.findViewById(R.id.errorDesc)
+        textViewError.text = message // Establece el texto del diálogo
 
-        if (errorClose != null) {
-            val builder = AlertDialog.Builder(this)
-            builder.setView(view)
-            val alertDialog: AlertDialog = builder.create()
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view)
+        val alertDialog = builder.create()
 
-            errorClose.setOnClickListener {
-                alertDialog.dismiss()
-                Toast.makeText(this, "Cerrado", Toast.LENGTH_LONG).show()
-            }
-
-            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            alertDialog.show()
-        } else {
-            Toast.makeText(this, "Error con el desplegado de la alerta", Toast.LENGTH_LONG).show()
+        val errorClose: Button = view.findViewById(R.id.errorClose)
+        errorClose.setOnClickListener {
+            alertDialog.dismiss()
         }
 
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
     }
 }
