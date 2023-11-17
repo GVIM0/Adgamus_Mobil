@@ -54,19 +54,19 @@ class LoginMain : AppCompatActivity() {
         Login.setOnClickListener {
 
             // Verificación de existencia de correo en la base de datos
-            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
+            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()},Contraseña=${Contraseña.text.toString()}"
             // Código de registro
             if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
                 val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
 
                     if (response.trim().equals("No hay registros", ignoreCase = true)) {
                         // El correo no existe en la base de datos
-                        showErrorDialog("Registrate para acceder a Adgamus y disfrutar de todas tus nuevas herramientas")
+                        showErrorDialog("Inicio de sesion","Registrate para acceder a Adgamus y disfrutar de todas tus nuevas herramientas")
                     } else {
                         // Cambio de actividad
                         val intento = Intent(this, Menu_Principal::class.java)
                         startActivity(intento)
-                        Toast.makeText(this,"Bienvenid@ a Adgamus",Toast.LENGTH_LONG).show()
+                        showDialog("Un nuevo comienzo","Bienvenido a Adgamus")
                         Email.setText("")
                         Contraseña.setText("")
                     }
@@ -76,7 +76,7 @@ class LoginMain : AppCompatActivity() {
                 val queue = Volley.newRequestQueue(this)
                 queue.add(verificacionRequest)
             } else {
-                showErrorDialog("Completa todos los campos")
+                showErrorDialog("Llenado de campos","Parace que hay algunos problemas con el llenado de los campos")
             }
 
         }
@@ -88,9 +88,11 @@ class LoginMain : AppCompatActivity() {
         return emailRegex.matches(email)
     }
 
-    private fun showErrorDialog(message: String) {
+    private fun showErrorDialog(message1: String,message: String) {
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.error_dialog, null)
+        val textError: TextView = view.findViewById(R.id.ErrorTitle)
+        textError.text = message1 // Establece el titulo del mensaje
         val textViewError: TextView = view.findViewById(R.id.errorDesc)
         textViewError.text = message // Establece el texto del diálogo
 
@@ -106,4 +108,27 @@ class LoginMain : AppCompatActivity() {
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
     }
+
+    private fun showDialog(message1: String, message: String) {
+        val inflater = layoutInflater
+        val view = inflater.inflate(R.layout.alert_dialog, null)
+        val text: TextView = view.findViewById(R.id.Title)
+        text.text = message1 // Establece el titulo del mensaje
+        val textViewError: TextView = view.findViewById(R.id.Descrip)
+        textViewError.text = message // Establece el texto del diálogo
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view)
+        val alertDialog = builder.create()
+
+        val errorClose: Button = view.findViewById(R.id.HapClose)
+        errorClose.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
+
 }

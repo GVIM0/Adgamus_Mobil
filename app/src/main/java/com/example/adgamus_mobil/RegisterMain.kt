@@ -4,11 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -57,7 +61,7 @@ class RegisterMain : AppCompatActivity() {
                                 val queue = Volley.newRequestQueue(this)
 
                                 val resultadoPost = object : StringRequest(Request.Method.POST, urlRegistro, Response.Listener<String> { response ->
-                                        Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_LONG).show()
+                                        showDialog("Bienvenido","Usuario registrado exitosamente")
 
                                 // Cambio de actividad
                                 val intento = Intent(this, LoginMain::class.java)
@@ -81,14 +85,14 @@ class RegisterMain : AppCompatActivity() {
                                 }
                                 queue.add(resultadoPost)
                             } else {
-                                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                                showErrorDialog("Coincidencia de contraseñas","Las contraseñas no coinciden")
                             }
                         } else {
-                            Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
+                            showErrorDialog("Llenado de campos","Parace que hay algunos problemas con el llenado de los campos")
                         }
                     } else {
                         // El correo ya existe en la base de datos, mostrar un mensaje de error
-                        Toast.makeText(this, "El correo ya está registrado", Toast.LENGTH_SHORT).show()
+                        showErrorDialog("Correo electronico","El correo ya fue registrado, intenta con uno diferente")
                     }
                 }, { error ->
                     Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
@@ -102,6 +106,48 @@ class RegisterMain : AppCompatActivity() {
     private fun EmailValido(email: String): Boolean {
         val emailRegex = Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})")
         return emailRegex.matches(email)
+    }
+
+    private fun showErrorDialog(message1: String,message: String) {
+        val inflater = layoutInflater
+        val view = inflater.inflate(R.layout.error_dialog, null)
+        val textError: TextView = view.findViewById(R.id.ErrorTitle)
+        textError.text = message1 // Establece el titulo del mensaje
+        val textViewError: TextView = view.findViewById(R.id.errorDesc)
+        textViewError.text = message // Establece el texto del diálogo
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view)
+        val alertDialog = builder.create()
+
+        val errorClose: Button = view.findViewById(R.id.errorClose)
+        errorClose.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
+    private fun showDialog(message1: String, message: String) {
+        val inflater = layoutInflater
+        val view = inflater.inflate(R.layout.alert_dialog, null)
+        val text: TextView = view.findViewById(R.id.Title)
+        text.text = message1 // Establece el titulo del mensaje
+        val textViewError: TextView = view.findViewById(R.id.Descrip)
+        textViewError.text = message // Establece el texto del diálogo
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view)
+        val alertDialog = builder.create()
+
+        val errorClose: Button = view.findViewById(R.id.HapClose)
+        errorClose.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
     }
 }
 
