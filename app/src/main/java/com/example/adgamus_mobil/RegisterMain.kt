@@ -42,16 +42,15 @@ class RegisterMain : AppCompatActivity() {
         Registrame = findViewById(R.id.Btn_Register)
 
         Registrame.setOnClickListener {
+            if (EmailValido(Email.text.toString()) && Nombre.text.isNotBlank() && Contraseña.text.isNotBlank() && Conf_Contraseña.text.isNotBlank()) {
+                // Verificación de existencia de correo en la base de datos
+                val urlVerificacion =
+                    "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
 
-            // Verificación de existencia de correo en la base de datos
-            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
-
-            val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
-                    if (response.trim().equals("No hay registros", ignoreCase = true)) {
-                        // El correo no existe en la base de datos, proceder con el registro
-
-                        // Código de registro
-                        if (EmailValido(Email.text.toString()) && Nombre.text.isNotBlank() && Contraseña.text.isNotBlank() && Conf_Contraseña.text.isNotBlank()) {
+                val verificacionRequest =
+                    StringRequest(Request.Method.GET, urlVerificacion, { response ->
+                        if (response.trim().equals("No hay registros", ignoreCase = true)) {
+                            // El correo no existe en la base de datos, proceder con el registro
 
                             if (Contraseña.text.toString() == Conf_Contraseña.text.toString()) {
 
@@ -60,21 +59,25 @@ class RegisterMain : AppCompatActivity() {
 
                                 val queue = Volley.newRequestQueue(this)
 
-                                val resultadoPost = object : StringRequest(Request.Method.POST, urlRegistro, Response.Listener<String> { response ->
-                                        showDialog("Bienvenido","Usuario registrado exitosamente")
+                                val resultadoPost = object : StringRequest(
+                                    Request.Method.POST,
+                                    urlRegistro,
+                                    Response.Listener<String> { response ->
+                                        showDialog("Bienvenido", "Usuario registrado exitosamente")
 
-                                // Cambio de actividad
-                                val intento = Intent(this, LoginMain::class.java)
-                                startActivity(intento)
+                                        // Cambio de actividad
+                                        val intento = Intent(this, LoginMain::class.java)
+                                        startActivity(intento)
 
-                                Email.setText("")
-                                Nombre.setText("")
-                                Contraseña.setText("")
-                                Conf_Contraseña.setText("")
+                                        Email.setText("")
+                                        Nombre.setText("")
+                                        Contraseña.setText("")
+                                        Conf_Contraseña.setText("")
 
-                                }, Response.ErrorListener { error ->
+                                    },
+                                    Response.ErrorListener { error ->
                                         Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
-                                }) {
+                                    }) {
                                     override fun getParams(): MutableMap<String, String> {
                                         val parametros = HashMap<String, String>()
                                         parametros["CorreoUsuario"] = Email.text.toString()
@@ -85,30 +88,30 @@ class RegisterMain : AppCompatActivity() {
                                 }
                                 queue.add(resultadoPost)
                             } else {
-                                showErrorDialog("Coincidencia de contraseñas","Las contraseñas no coinciden")
+                                showErrorDialog("Coincidencia de contraseñas", "Las contraseñas no coinciden"
+                                )
                             }
                         } else {
-                            showErrorDialog("Llenado de campos","Parace que hay algunos problemas con el llenado de los campos")
+                            // El correo ya existe en la base de datos, mostrar un mensaje de error
+                            showErrorDialog("Correo electronico", "El correo ya fue registrado, intenta con uno diferente")
                         }
-                    } else {
-                        // El correo ya existe en la base de datos, mostrar un mensaje de error
-                        showErrorDialog("Correo electronico","El correo ya fue registrado, intenta con uno diferente")
-                    }
-                }, { error ->
-                    Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
-                })
-            val queue = Volley.newRequestQueue(this)
-            queue.add(verificacionRequest)
-
+                    }, { error ->
+                        Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                    })
+                val queue = Volley.newRequestQueue(this)
+                queue.add(verificacionRequest)
+            }else {
+                    showErrorDialog("Llenado de campos", "Parace que hay algunos problemas con el llenado de los campos")
+                }
         }
-
     }
+
     private fun EmailValido(email: String): Boolean {
         val emailRegex = Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})")
         return emailRegex.matches(email)
     }
 
-    private fun showErrorDialog(message1: String,message: String) {
+    private fun showErrorDialog(message1: String, message: String) {
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.error_dialog, null)
         val textError: TextView = view.findViewById(R.id.ErrorTitle)

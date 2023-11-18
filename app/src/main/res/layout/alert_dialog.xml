@@ -36,8 +36,8 @@
             android:background="@drawable/happy"
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ErrorTitle"
-            app:layout_constraintBottom_toBottomOf="@+id/ErrorTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/Title"
+            app:layout_constraintBottom_toBottomOf="@+id/Title"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ErrorTitle"/>
+            app:layout_constraintTop_toBottomOf="@+id/Title"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

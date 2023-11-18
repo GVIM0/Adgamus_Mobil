@@ -63,10 +63,10 @@ class LoginMain : AppCompatActivity() {
                         // El correo no existe en la base de datos
                         showErrorDialog("Inicio de sesion","Registrate para acceder a Adgamus y disfrutar de todas tus nuevas herramientas")
                     } else {
+                        showDialog("Un nuevo comienzo","Bienvenido a Adgamus")
                         // Cambio de actividad
                         val intento = Intent(this, Menu_Principal::class.java)
                         startActivity(intento)
-                        showDialog("Un nuevo comienzo","Bienvenido a Adgamus")
                         Email.setText("")
                         Contraseña.setText("")
                     }
