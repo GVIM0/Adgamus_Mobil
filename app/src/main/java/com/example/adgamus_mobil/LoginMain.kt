@@ -1,5 +1,6 @@
 package com.example.adgamus_mobil
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.android.volley.Request
 import com.android.volley.Response
@@ -53,30 +55,26 @@ class LoginMain : AppCompatActivity() {
         // Inicio de sesion
         Login.setOnClickListener {
 
-            // Verificación de existencia de correo en la base de datos
-            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()},Contraseña=${Contraseña.text.toString()}"
-            // Código de registro
             if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
+                // Verificación de existencia de correo en la base de datos
+                val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Login.php?CorreoUsuario=${Email.text.toString()}&Contraseña=${Contraseña.text.toString()}"
                 val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
 
                     if (response.trim().equals("No hay registros", ignoreCase = true)) {
-                        // El correo no existe en la base de datos
-                        showErrorDialog("Inicio de sesion","Registrate para acceder a Adgamus y disfrutar de todas tus nuevas herramientas")
-                    } else {
-                        showDialog("Un nuevo comienzo","Bienvenido a Adgamus")
-                        // Cambio de actividad
-                        val intento = Intent(this, Menu_Principal::class.java)
-                        startActivity(intento)
-                        Email.setText("")
-                        Contraseña.setText("")
+                        showErrorDialog("Inicio de sesion","Registrate como nuevo usuario o verifica tu coreo u contraseña")
+                    }  else {
+                        showDialog("Un nuevo comienzo", "Bienvenido a Adgamus")
                     }
+                    Email.setText("")
+                    Contraseña.setText("")
+
                 }, { error ->
                     Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
                 })
                 val queue = Volley.newRequestQueue(this)
                 queue.add(verificacionRequest)
             } else {
-                showErrorDialog("Llenado de campos","Parace que hay algunos problemas con el llenado de los campos")
+                showErrorDialog("Llenado de campos","Completa todos los campos antes de iniciar sesion")
             }
 
         }
@@ -123,11 +121,19 @@ class LoginMain : AppCompatActivity() {
 
         val errorClose: Button = view.findViewById(R.id.HapClose)
         errorClose.setOnClickListener {
+            // Cambio de actividad
+            val intento = Intent(this, Menu_Principal::class.java)
+            startActivity(intento)
             alertDialog.dismiss()
         }
 
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
     }
 
 

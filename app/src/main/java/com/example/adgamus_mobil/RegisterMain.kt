@@ -1,18 +1,16 @@
 package com.example.adgamus_mobil
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -43,41 +41,27 @@ class RegisterMain : AppCompatActivity() {
 
         Registrame.setOnClickListener {
             if (EmailValido(Email.text.toString()) && Nombre.text.isNotBlank() && Contraseña.text.isNotBlank() && Conf_Contraseña.text.isNotBlank()) {
-                // Verificación de existencia de correo en la base de datos
-                val urlVerificacion =
-                    "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
-
-                val verificacionRequest =
-                    StringRequest(Request.Method.GET, urlVerificacion, { response ->
-                        if (response.trim().equals("No hay registros", ignoreCase = true)) {
-                            // El correo no existe en la base de datos, proceder con el registro
-
-                            if (Contraseña.text.toString() == Conf_Contraseña.text.toString()) {
+                if (Contraseña.text.toString() == Conf_Contraseña.text.toString()) {
+                    // Verificación de existencia de correo en la base de datos
+                    val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
+                    val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
+                            if (response.trim().equals("No hay registros", ignoreCase = true)) {
+                                // El correo no existe en la base de datos, proceder con el registro
 
                                 // URL Base de datos inserción
                                 val urlRegistro = "http://192.168.101.11/Adgamus_Movil/Insertar.php"
 
                                 val queue = Volley.newRequestQueue(this)
 
-                                val resultadoPost = object : StringRequest(
-                                    Request.Method.POST,
-                                    urlRegistro,
-                                    Response.Listener<String> { response ->
+                                val resultadoPost = object : StringRequest(Request.Method.POST, urlRegistro, Response.Listener<String> { response ->
                                         showDialog("Bienvenido", "Usuario registrado exitosamente")
-
-                                        // Cambio de actividad
-                                        val intento = Intent(this, LoginMain::class.java)
-                                        startActivity(intento)
-
                                         Email.setText("")
                                         Nombre.setText("")
                                         Contraseña.setText("")
                                         Conf_Contraseña.setText("")
-
-                                    },
-                                    Response.ErrorListener { error ->
-                                        Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
-                                    }) {
+                                }, Response.ErrorListener { error ->
+                                    Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                                }) {
                                     override fun getParams(): MutableMap<String, String> {
                                         val parametros = HashMap<String, String>()
                                         parametros["CorreoUsuario"] = Email.text.toString()
@@ -88,21 +72,25 @@ class RegisterMain : AppCompatActivity() {
                                 }
                                 queue.add(resultadoPost)
                             } else {
-                                showErrorDialog("Coincidencia de contraseñas", "Las contraseñas no coinciden"
-                                )
+                                // El correo ya existe en la base de datos, mostrar un mensaje de error
+                                showErrorDialog("Correo electronico", "El correo ya fue registrado, intenta con uno diferente")
                             }
-                        } else {
-                            // El correo ya existe en la base de datos, mostrar un mensaje de error
-                            showErrorDialog("Correo electronico", "El correo ya fue registrado, intenta con uno diferente")
-                        }
-                    }, { error ->
-                        Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
-                    })
-                val queue = Volley.newRequestQueue(this)
-                queue.add(verificacionRequest)
-            }else {
-                    showErrorDialog("Llenado de campos", "Parace que hay algunos problemas con el llenado de los campos")
+                        }, { error ->
+                            Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                        })
+                    val queue = Volley.newRequestQueue(this)
+                    queue.add(verificacionRequest)
+                } else {
+                    if (esLongitudContraseñaValida(Contraseña.text.toString(),Conf_Contraseña.text.toString())) {
+                        // Continúa con el proceso de registro
+                    } else {
+                        showErrorDialog("Longitud de contraseña", "La contraseña No coinciden y deben tener entre 8 y 16 caracteres.")
+                    }
                 }
+            } else {
+                showErrorDialog("Llenado de campos", "Completa todos los campos"
+                )
+            }
         }
     }
 
@@ -146,11 +134,20 @@ class RegisterMain : AppCompatActivity() {
 
         val errorClose: Button = view.findViewById(R.id.HapClose)
         errorClose.setOnClickListener {
+            // Cambio de actividad
+            val intento = Intent(this, LoginMain::class.java)
+            intento.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intento)
             alertDialog.dismiss()
         }
 
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
     }
+
+    private fun esLongitudContraseñaValida(contrasena: String, config: String): Boolean {
+        return contrasena.length in 8..16
+    }
+
 }
 
