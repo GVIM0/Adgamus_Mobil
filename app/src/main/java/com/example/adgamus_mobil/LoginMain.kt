@@ -61,7 +61,7 @@ class LoginMain : AppCompatActivity() {
                 val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
 
                     if (response.trim().equals("No hay registros", ignoreCase = true)) {
-                        showErrorDialog("Inicio de sesion","Registrate como nuevo usuario o verifica tu coreo u contraseña")
+                        showErrorDialog("Inicio de sesion","Registrate como nuevo usuario o verifica tu correo u contraseña")
                     }  else {
                         showDialog("Un nuevo comienzo", "Bienvenido a Adgamus")
                     }
