@@ -54,7 +54,7 @@
                 android:layout_marginTop="12dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
-                android:background="@drawable/round_back_secundario_100"
+                android:background="@drawable/btns_ajustes"
                 android:textAllCaps="false"
                 android:text="Editar"
                 android:textColor="#F1EBDF" />
@@ -90,12 +90,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
 
 
 
@@ -126,7 +120,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
 
-                android:background="@drawable/round_back_secundario_100"
+                android:background="@drawable/btns_ajustes"
                 android:enabled="false"
                 android:text="Aceptar cambios"
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_brown"
+    android:background="@color/white"
     tools:context=".AjustesFragment">
 
 
@@ -43,11 +43,11 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:paddingStart="25dp"
                 android:paddingEnd="25dp"
-                android:background="@drawable/round_back_secundario_100"
+                android:background="@drawable/btns_ajustes"
                 android:textAllCaps="false"
                 android:text="Editar"
                 android:textColor="#F1EBDF" />
@@ -57,9 +57,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="38dp"
                 android:orientation="vertical"
-                android:background="@drawable/round_back_style1"
+                android:background="@drawable/bkg_opc__ajustes"
                 android:padding="15dp">
 
                 <!-- Switch Modo Oscuro-->
@@ -82,7 +82,7 @@
                         android:layout_centerVertical="true"
                         android:text="Modo Noche"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="@color/grey"
                         android:layout_toEndOf="@+id/Icono_Noche"
                         />
 
@@ -91,8 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:switchMinWidth="55dp"
-                        android:theme="@style/Switch" />
+                        android:switchMinWidth="55dp" />
 
 
                 </RelativeLayout>
@@ -117,7 +116,7 @@
                         android:layout_centerVertical="true"
                         android:text="Notificaciones"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="@color/grey"
                         android:layout_toEndOf="@+id/Icono_Notificación"
                         />
 
@@ -126,8 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:switchMinWidth="55dp"
-                        android:theme="@style/Switch" />
+                        android:switchMinWidth="55dp" />
 
 
                 </RelativeLayout>
@@ -151,7 +149,7 @@
                         android:layout_centerVertical="true"
                         android:text="Sonido"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="@color/grey"
                         android:layout_toEndOf="@+id/Icono_Sonido"
                         />
 
@@ -160,8 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:switchMinWidth="55dp"
-                        android:theme="@style/Switch" />
+                        android:switchMinWidth="55dp" />
 
 
                 </RelativeLayout>
@@ -176,7 +173,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="40dp"
                 android:orientation="vertical"
-                android:background="@drawable/round_back_style1"
+                android:background="@drawable/bkg_opc__ajustes"
                 android:padding="15dp">
 
 
@@ -200,7 +197,7 @@
                         android:layout_centerVertical="true"
                         android:text="Lenguaje"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="@color/grey"
                         android:layout_toEndOf="@+id/Icono_Lenguaje"
                         />
 
@@ -232,9 +229,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="----Tipo de unidades---"
+                        android:text="Tipo de unidades"
                         android:textStyle="bold"
-                        android:textColor="#FFFFFFFF"
+                        android:textColor="@color/grey"
                         android:layout_toEndOf="@+id/Icono_Unidades"
                         />
 
@@ -255,13 +252,13 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Aceptar_Cambios"
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Aceptar cambios"
+                android:text="Guardar"
                 android:textStyle="bold"
                 android:textColor="#F1EBDF"
-                android:background="@drawable/round_back_secundario_100"
+                android:background="@drawable/btns_ajustes"
                 android:textAllCaps="false"
                 android:enabled="false"
                 />
