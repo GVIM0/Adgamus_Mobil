@@ -1,6 +1,7 @@
 package com.example.adgamus_mobil
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -49,10 +50,6 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         fragmentManager = supportFragmentManager
         openFragment(HomeFragment())
 
-
-        // Traer la informacion del usuario al drawer lateral
-
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -62,8 +59,12 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_Mensajes -> openFragment(MensajesFragment())
             R.id.nav_Bot -> Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
             R.id.nav_Ajustes -> openFragment(AjustesFragment())
-            R.id.nav_Perfil -> openFragment(PerfilFragment())
-            R.id.nav_logout -> Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_LONG).show()
+            R.id.nav_Perfil -> Toast.makeText(this, "Editar usuario", Toast.LENGTH_LONG).show()
+            R.id.nav_logout -> {
+                // Cambio de actividad
+                val intento = Intent(this, LoginMain::class.java)
+                startActivity(intento)
+            }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
@@ -75,7 +76,7 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else{
-            super.onBackPressedDispatcher.onBackPressed()
+
         }
     }
 

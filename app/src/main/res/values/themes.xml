@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Adgamus_Mobil" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/light_green</item>
+        <item name="colorPrimary">@color/light_green</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="android:statusBarColor">@color/green</item>
     </style>
 
@@ -12,14 +12,4 @@
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@android:color/transparent</item>
     </style>
-
-
-    <style name="Switch" parent="Theme.AppCompat.Light">
-        <item name="colorControlActivated">#090808</item>
-        <item name="colorSwitchThumbNormal">#FFFFFF</item>
-        <item name="android:colorForeground">#531B1B</item>
-    </style>
-
-
-
 </resources>

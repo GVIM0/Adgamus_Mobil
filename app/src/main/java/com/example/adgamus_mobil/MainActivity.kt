@@ -1,5 +1,6 @@
 package com.example.adgamus_mobil
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
             val intento = Intent(this, LoginMain::class.java)
             startActivity(intento)
         }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
     }
 
 }

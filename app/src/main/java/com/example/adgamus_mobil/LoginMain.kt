@@ -1,5 +1,6 @@
 package com.example.adgamus_mobil
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.android.volley.Request
 import com.android.volley.Response
@@ -53,30 +55,26 @@ class LoginMain : AppCompatActivity() {
         // Inicio de sesion
         Login.setOnClickListener {
 
-            // Verificación de existencia de correo en la base de datos
-            val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Registro.php?CorreoUsuario=${Email.text.toString()}"
-            // Código de registro
             if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
+                // Verificación de existencia de correo en la base de datos
+                val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Login.php?CorreoUsuario=${Email.text.toString()}&Contraseña=${Contraseña.text.toString()}"
                 val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
 
                     if (response.trim().equals("No hay registros", ignoreCase = true)) {
-                        // El correo no existe en la base de datos
-                        showErrorDialog("Registrate para acceder a Adgamus y disfrutar de todas tus nuevas herramientas")
-                    } else {
-                        // Cambio de actividad
-                        val intento = Intent(this, Menu_Principal::class.java)
-                        startActivity(intento)
-                        Toast.makeText(this,"Bienvenid@ a Adgamus",Toast.LENGTH_LONG).show()
-                        Email.setText("")
-                        Contraseña.setText("")
+                        showErrorDialog("Inicio de sesion","Registrate como nuevo usuario o verifica tu correo u contraseña")
+                    }  else {
+                        showDialog("Un nuevo comienzo", "Bienvenido a Adgamus")
                     }
+                    Email.setText("")
+                    Contraseña.setText("")
+
                 }, { error ->
                     Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
                 })
                 val queue = Volley.newRequestQueue(this)
                 queue.add(verificacionRequest)
             } else {
-                showErrorDialog("Completa todos los campos")
+                showErrorDialog("Llenado de campos","Completa todos los campos antes de iniciar sesion")
             }
 
         }
@@ -88,9 +86,11 @@ class LoginMain : AppCompatActivity() {
         return emailRegex.matches(email)
     }
 
-    private fun showErrorDialog(message: String) {
+    private fun showErrorDialog(message1: String,message: String) {
         val inflater = layoutInflater
         val view = inflater.inflate(R.layout.error_dialog, null)
+        val textError: TextView = view.findViewById(R.id.ErrorTitle)
+        textError.text = message1 // Establece el titulo del mensaje
         val textViewError: TextView = view.findViewById(R.id.errorDesc)
         textViewError.text = message // Establece el texto del diálogo
 
@@ -106,4 +106,35 @@ class LoginMain : AppCompatActivity() {
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
     }
+
+    private fun showDialog(message1: String, message: String) {
+        val inflater = layoutInflater
+        val view = inflater.inflate(R.layout.alert_dialog, null)
+        val text: TextView = view.findViewById(R.id.Title)
+        text.text = message1 // Establece el titulo del mensaje
+        val textViewError: TextView = view.findViewById(R.id.Descrip)
+        textViewError.text = message // Establece el texto del diálogo
+
+        val builder = AlertDialog.Builder(this)
+        builder.setView(view)
+        val alertDialog = builder.create()
+
+        val errorClose: Button = view.findViewById(R.id.HapClose)
+        errorClose.setOnClickListener {
+            // Cambio de actividad
+            val intento = Intent(this, Menu_Principal::class.java)
+            startActivity(intento)
+            alertDialog.dismiss()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
+    }
+
+
 }
