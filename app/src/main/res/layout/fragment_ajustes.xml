@@ -3,15 +3,272 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/light_brown"
     tools:context=".AjustesFragment">
 
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Ajustes"
-        android:gravity="center"
-        android:textColor="@color/green"
-        android:textSize="36dp"/> />
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_person_pin_24">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/Nombre_Usus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre_Usuario"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/Correo_Usu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo Usuario"
+                android:textStyle="italic"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="12dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"
+                android:background="@drawable/round_back_secundario_100"
+                android:textAllCaps="false"
+                android:text="Editar"
+                android:textColor="#F1EBDF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_back_style1"
+                android:padding="15dp">
+
+                <!-- Switch Modo Oscuro-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/Icono_Noche"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:padding="12sp"
+                        android:src="@drawable/noche"
+                        tools:ignore="DuplicateIds" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Modo Noche"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFFFF"
+                        android:layout_toEndOf="@+id/Icono_Noche"
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:switchMinWidth="55dp"
+                        android:theme="@style/Switch" />
+
+
+                </RelativeLayout>
+
+                <!-- Switch Notificaciones-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/Icono_Notificación"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:padding="12sp"
+                        android:src="@drawable/notificacion"
+                        tools:ignore="DuplicateIds" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Notificaciones"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFFFF"
+                        android:layout_toEndOf="@+id/Icono_Notificación"
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:switchMinWidth="55dp"
+                        android:theme="@style/Switch" />
+
+
+                </RelativeLayout>
+
+                <!-- Switch Sonido-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/Icono_Sonido"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
+                        android:padding="12sp"
+                        android:src="@drawable/audio" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Sonido"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFFFF"
+                        android:layout_toEndOf="@+id/Icono_Sonido"
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:switchMinWidth="55dp"
+                        android:theme="@style/Switch" />
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                android:background="@drawable/round_back_style1"
+                android:padding="15dp">
+
+
+                <!-- Spinner lenguaje-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/Icono_Lenguaje"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="12sp"
+                        android:src="@drawable/idiomas" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Lenguaje"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFFFF"
+                        android:layout_toEndOf="@+id/Icono_Lenguaje"
+                        />
+
+                    <Spinner
+                        android:id="@+id/Spinner_Idioma"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/spinner_style"/>
+
+                </RelativeLayout>
+
+                <!-- Spinner Unidades de Conversión-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/Icono_Unidades"
+                        android:layout_width="50dp"
+                        android:layout_height="52dp"
+                        android:padding="12sp"
+                        android:src="@drawable/medida" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="----Tipo de unidades---"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFFFF"
+                        android:layout_toEndOf="@+id/Icono_Unidades"
+                        />
+
+                    <Spinner
+                        android:id="@+id/Spinner_Unidades"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/spinner_style"/>
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/Aceptar_Cambios"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:text="Aceptar cambios"
+                android:textStyle="bold"
+                android:textColor="#F1EBDF"
+                android:background="@drawable/round_back_secundario_100"
+                android:textAllCaps="false"
+                android:enabled="false"
+                />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>
