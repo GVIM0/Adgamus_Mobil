@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="65dp"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -29,17 +29,17 @@
                 android:id="@+id/Nombre_Usus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Nombre_Usuario"
-                style="@style/Estilo_Primario"
-                />
+                style="@style/Estilo_Primario" />
 
             <TextView
                 android:id="@+id/Correo_Usu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Correo Usuario"
-                style="@style/Estilo_Correo"
-                />
+                android:layout_marginTop="8dp"
+                style="@style/Estilo_Correo" />
 
 
 
