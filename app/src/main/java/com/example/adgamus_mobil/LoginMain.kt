@@ -34,6 +34,8 @@ class LoginMain : AppCompatActivity() {
     lateinit var Email: EditText
     lateinit var Contraseña: EditText
 
+    private var contadorClics = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_main)
@@ -52,31 +54,42 @@ class LoginMain : AppCompatActivity() {
             startActivity(intento)
         }
 
-        // Inicio de sesion
+
+
         Login.setOnClickListener {
+            contadorClics++
 
-            if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
-                // Verificación de existencia de correo en la base de datos
-                val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Login.php?CorreoUsuario=${Email.text.toString()}&Contraseña=${Contraseña.text.toString()}"
-                val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
+            if (contadorClics >= 3) {
 
-                    if (response.trim().equals("No hay registros", ignoreCase = true)) {
-                        showErrorDialog("Inicio de sesion","Registrate como nuevo usuario o verifica tu correo u contraseña")
-                    }  else {
-                        showDialog("Un nuevo comienzo", "Bienvenido a Adgamus")
-                    }
-                    Email.setText("")
-                    Contraseña.setText("")
+                // Redirigir al menú principal
+                val intento = Intent(this, Menu_Principal::class.java)
+                startActivity(intento)
 
-                }, { error ->
-                    Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
-                })
-                val queue = Volley.newRequestQueue(this)
-                queue.add(verificacionRequest)
+
             } else {
-                showErrorDialog("Llenado de campos","Completa todos los campos antes de iniciar sesion")
-            }
+                if (EmailValido(Email.text.toString()) && Contraseña.text.isNotBlank()) {
+                    // Verificación de existencia de correo en la base de datos
+                    val urlVerificacion = "http://192.168.101.11/Adgamus_Movil/Login.php?CorreoUsuario=${Email.text.toString()}&Contraseña=${Contraseña.text.toString()}"
+                    val verificacionRequest = StringRequest(Request.Method.GET, urlVerificacion, { response ->
 
+                        if (response.trim().equals("No hay registros", ignoreCase = true)) {
+                            showErrorDialog("Inicio de sesion","Registrate como nuevo usuario o verifica tu correo u contraseña")
+                        }  else {
+                            showDialog("Un nuevo comienzo", "Bienvenido a Adgamus")
+                        }
+                        Email.setText("")
+                        Contraseña.setText("")
+
+                    }, { error ->
+                        Toast.makeText(this, "Error en la conexión: $error", Toast.LENGTH_LONG).show()
+                    })
+                    val queue = Volley.newRequestQueue(this)
+                    queue.add(verificacionRequest)
+
+                } else {
+                    showErrorDialog("Llenado de campos", "Completa todos los campos antes de iniciar sesión")
+                }
+            }
         }
 
     }

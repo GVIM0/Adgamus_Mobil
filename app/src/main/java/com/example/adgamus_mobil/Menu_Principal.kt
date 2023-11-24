@@ -59,7 +59,7 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.nav_Mensajes -> openFragment(MensajesFragment())
             R.id.nav_Bot -> Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
             R.id.nav_Ajustes -> openFragment(AjustesFragment())
-            R.id.nav_Perfil -> Toast.makeText(this, "Editar usuario", Toast.LENGTH_LONG).show()
+            R.id.nav_Perfil -> openFragment(PerfilFragment())
             R.id.nav_logout -> {
                 // Cambio de actividad
                 val intento = Intent(this, LoginMain::class.java)
@@ -85,5 +85,6 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         fragmentTransaction.replace(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
     }
+
 
 }

@@ -9,6 +9,6 @@
 
     <stroke
         android:width="2dp"
-        android:color="#FFFFFF"/> <!-- Puedes ajustar el ancho y color del contorno según tus preferencias -->
+        android:color="#D54E4E"/> <!-- Puedes ajustar el ancho y color del contorno según tus preferencias -->
 
 </shape>
