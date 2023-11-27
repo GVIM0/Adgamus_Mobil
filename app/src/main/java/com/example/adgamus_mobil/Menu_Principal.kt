@@ -4,10 +4,15 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -15,14 +20,23 @@ import com.example.adgamus_mobil.databinding.MenuPrincipalBinding
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
-class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, NavigationBarView.OnItemSelectedListener {
+class Menu_Principal : AppCompatActivity(),
+    NavigationView.OnNavigationItemSelectedListener,
+    NavigationBarView.OnItemSelectedListener,
+    HomeFragment.OnFragmentInteractionListener{
 
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: MenuPrincipalBinding
+    private lateinit var slideOutAnimation: Animation
+    private lateinit var slideInAnimation: Animation
+    var animacionEjecutada = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu_principal)
+
+        val homeFragment = HomeFragment()
+        homeFragment.setFragmentInteractionListener(this)
 
         binding = MenuPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,15 +49,23 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
 
-        // Quita el fondo (me quito 3 horas de vida y 5-6 videos ademas de consultas a chatGPT para encontrarlo)
-        // binding.bottomNavigation.background = null
+        // Carga la animación
+        slideOutAnimation = AnimationUtils.loadAnimation(this, R.anim.salida_bot_nav)
+        slideInAnimation = AnimationUtils.loadAnimation(this, R.anim.entrada_bot_nav)
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when(item.itemId){
+
+        //Selección del BottomNavigation
+        binding.bottomNavigation.setOnItemSelectedListener{ item ->
+            when (item.itemId) {
                 R.id.bottom_home -> openFragment(HomeFragment())
                 R.id.bottom_Plantas -> openFragment(PlantasFragment())
                 R.id.bottom_Animales -> openFragment(AnimalesFragment())
                 R.id.bottom_recursos -> openFragment(RecursosFragment())
+            }
+
+            // Deseleccionar todos los elementos del NavigationView
+            binding.navigationDrawer.menu.forEach { menuItem ->
+                menuItem.isChecked = false
             }
             true
         }
@@ -52,9 +74,10 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     }
 
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
-            // Agregar fragmentos como en los botones de abajo
             R.id.nav_Red_Social-> openFragment(RedFragment())
             R.id.nav_Mensajes -> openFragment(MensajesFragment())
             R.id.nav_Bot -> Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
@@ -66,6 +89,13 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 startActivity(intento)
             }
         }
+
+        //Comprueba si la animación ya se ha ejecutado y ha ocultado el BottomNavigation
+        if (binding.bottomNavigation.visibility == View.VISIBLE) {
+            binding.bottomNavigation.startAnimation(slideOutAnimation)
+            binding.bottomNavigation.visibility = View.GONE
+        }
+
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
 
@@ -75,8 +105,6 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     override fun onBackPressed() {
         if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
-        } else{
-
         }
     }
 
@@ -86,5 +114,11 @@ class Menu_Principal : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         fragmentTransaction.commit()
     }
 
+    override fun Entrada_Bot_Nav() {
+        binding.bottomNavigation.visibility = View.VISIBLE
+        binding.bottomNavigation.startAnimation(slideInAnimation)
+
+    }
 
 }
+
