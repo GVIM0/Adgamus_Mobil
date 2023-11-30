@@ -2,13 +2,10 @@ package com.example.adgamus_mobil
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.adgamus_mobil.R
 import com.example.adgamus_mobil.databinding.FragmentHomeBinding
 
 
