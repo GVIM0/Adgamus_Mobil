@@ -33,17 +33,6 @@ class HomeFragment : Fragment() {
             ejecutarFuncionEnPrincipal()
         }
 
-        val imageViewToAjustes = binding.ToAjustes
-        val imageViewToPerfil = binding.ToPerfil
-
-        imageViewToAjustes.setOnClickListener {
-            Cambiar_Fragmento(AjustesFragment(), "DesdeHome")
-        }
-
-        imageViewToPerfil.setOnClickListener {
-            Cambiar_Fragmento(PerfilFragment(), "DesdeHome")
-        }
-
         return binding.root
     }
 

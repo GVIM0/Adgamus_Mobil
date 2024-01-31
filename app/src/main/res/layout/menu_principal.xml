@@ -19,7 +19,7 @@
             android:id="@+id/toolbar"
             app:title="Adgamus"
             android:elevation="1dp"
-            app:titleMarginStart="102dp"
+            app:titleMarginStart="110dp"
             app:titleTextColor="@color/white"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:popupTheme="@style/Theme.AppCompat.Light" />

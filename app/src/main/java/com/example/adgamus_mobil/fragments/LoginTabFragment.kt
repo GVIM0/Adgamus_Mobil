@@ -47,7 +47,7 @@ class LoginTabFragment : Fragment() {
             contadorClics++
 
             if (contadorClics >= 3) {
-                val intento = Intent(requireContext(), Log_Sign_Main::class.java)
+                val intento = Intent(requireContext(), Menu_Principal::class.java)
                 startActivity(intento)
                 contadorClics = 0 // Reiniciar el contador después de la redirección
             } else {

@@ -25,47 +25,9 @@ class AnimalesFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAnimalesBinding.inflate(inflater, container, false)
 
-        //Inicializamos las Imágenes
-
-        val IV_Bus_Gan  = binding.ToBusquedaGanado
-        val IV_Seg_Gan = binding.ToSeguimientoGanado
-        val IV_Cruza = binding.ToCruza
-        val IV_Historial = binding.ToHistorialGanado
-
         entrada = AnimationUtils.loadAnimation(requireActivity(), R.anim.entrada_img)
 
-        IV_Bus_Gan.startAnimation(entrada)
-        IV_Seg_Gan.startAnimation(entrada)
-        IV_Cruza.startAnimation(entrada)
-        IV_Historial.startAnimation(entrada)
-
-        IV_Bus_Gan.setOnClickListener {
-            Cambiar_Fragmento(Busqueda_Ganado())
-        }
-        IV_Seg_Gan.setOnClickListener {
-            Cambiar_Fragmento(Seguimientos_Ganado())
-        }
-        IV_Cruza.setOnClickListener {
-            Cambiar_Fragmento(Cruza_Ganado())
-        }
-        IV_Historial.setOnClickListener {
-            Cambiar_Fragmento(Historial_Ganado())
-        }
-
-
-
-
         return binding.root
-    }
-
-    private fun Cambiar_Fragmento(fragment: Fragment) {
-
-        val fragmentManager = requireActivity().supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
 
 }

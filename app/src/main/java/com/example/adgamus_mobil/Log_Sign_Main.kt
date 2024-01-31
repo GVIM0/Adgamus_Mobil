@@ -1,5 +1,6 @@
 package com.example.adgamus_mobil
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -44,5 +45,10 @@ class Log_Sign_Main : AppCompatActivity() {
                 tabLayout?.selectTab(tabLayout?.getTabAt(position))
             }
         })
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+
     }
 }
