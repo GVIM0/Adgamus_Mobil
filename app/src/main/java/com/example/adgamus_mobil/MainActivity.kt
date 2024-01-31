@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
 
         Comenzar.setOnClickListener {
-            val intento = Intent(this, LoginMain::class.java)
+            val intento = Intent(this, Log_Sign_Main::class.java)
             startActivity(intento)
         }
     }

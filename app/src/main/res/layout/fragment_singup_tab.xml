@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.SingupTabFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:padding="20dp">
+            
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="140dp"
+                android:src="@drawable/sign_img"/>
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:id="@+id/Email_edit_log"
+                android:layout_marginTop="30dp"
+                android:padding="8dp"
+                android:hint="Email"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="8dp"
+                android:background="@drawable/edittext_login_bkg"/>
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:id="@+id/Contraseña_edit_log"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/cerradura"
+                android:drawablePadding="8dp"
+                android:background="@drawable/edittext_login_bkg"/>
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:id="@+id/Conf_Contraseña_edit_log"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="Confirma tu Contraseña"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/password"
+                android:drawablePadding="8dp"
+                android:background="@drawable/edittext_login_bkg"/>
+            
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:id="@+id/Btn_Register"
+                android:textSize="20sp"
+                android:text="Registrarme"
+                app:cornerRadius="30dp"/>
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

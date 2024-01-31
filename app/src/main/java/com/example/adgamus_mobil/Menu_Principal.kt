@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
@@ -17,6 +16,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.adgamus_mobil.databinding.MenuPrincipalBinding
+import com.example.adgamus_mobil.fragments.AjustesFragment
+import com.example.adgamus_mobil.fragments.AnimalesFragment
+import com.example.adgamus_mobil.fragments.HomeFragment
+import com.example.adgamus_mobil.fragments.MensajesFragment
+import com.example.adgamus_mobil.fragments.PerfilFragment
+import com.example.adgamus_mobil.fragments.PlantasFragment
+import com.example.adgamus_mobil.fragments.RecursosFragment
+import com.example.adgamus_mobil.fragments.RedFragment
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
@@ -85,7 +92,7 @@ class Menu_Principal : AppCompatActivity(),
             R.id.nav_Perfil -> openFragment(PerfilFragment())
             R.id.nav_logout -> {
                 // Cambio de actividad
-                val intento = Intent(this, LoginMain::class.java)
+                val intento = Intent(this, Log_Sign_Main::class.java)
                 startActivity(intento)
             }
         }

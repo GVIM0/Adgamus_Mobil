@@ -317,9 +317,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="happy" />
-                            <entry key="sourceFile" value="C:\Users\Windows\Downloads\vaca.svg" />
+                            <entry key="outputName" value="password" />
+                            <entry key="sourceFile" value="C:\Users\Windows\Downloads\password.svg" />
                           </map>
                         </option>
                       </PersistentState>
