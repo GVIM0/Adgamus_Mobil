@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -34,9 +35,7 @@ class Menu_Principal : AppCompatActivity(),
 
     private lateinit var fragmentManager: FragmentManager
     private lateinit var binding: MenuPrincipalBinding
-    private lateinit var slideOutAnimation: Animation
-    private lateinit var slideInAnimation: Animation
-    var animacionEjecutada = false
+    // Animaciones eliminadas
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,15 +55,14 @@ class Menu_Principal : AppCompatActivity(),
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
 
-        // Carga la animación
-        slideOutAnimation = AnimationUtils.loadAnimation(this, R.anim.salida_bot_nav)
-        slideInAnimation = AnimationUtils.loadAnimation(this, R.anim.entrada_bot_nav)
-
+        // Animaciones eliminadas
 
         //Selección del BottomNavigation
         binding.bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
-                R.id.bottom_home -> openFragment(HomeFragment())
+                R.id.bottom_home -> {
+                    openFragment(HomeFragment())
+                }
                 R.id.bottom_Plantas -> openFragment(PlantasFragment())
                 R.id.bottom_Animales -> openFragment(AnimalesFragment())
                 R.id.bottom_recursos -> openFragment(RecursosFragment())
@@ -78,18 +76,30 @@ class Menu_Principal : AppCompatActivity(),
         }
         fragmentManager = supportFragmentManager
         openFragment(HomeFragment())
-
     }
 
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         when(item.itemId){
-            R.id.nav_Red_Social-> openFragment(RedFragment())
-            R.id.nav_Mensajes -> openFragment(MensajesFragment())
-            R.id.nav_Bot -> Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
-            R.id.nav_Ajustes -> openFragment(AjustesFragment())
-            R.id.nav_Perfil -> openFragment(PerfilFragment())
+            R.id.nav_Red_Social-> {
+                openFragment(RedFragment())
+                bottom_change_drawer()
+            }
+            R.id.nav_Mensajes -> {
+                openFragment(MensajesFragment())
+                bottom_change_drawer()
+            }
+            R.id.nav_Bot -> {
+                Toast.makeText(this, "Chat bot", Toast.LENGTH_LONG).show()
+                bottom_change_drawer()
+            }
+            R.id.nav_Ajustes -> {
+                openFragment(AjustesFragment())
+                bottom_change_drawer()
+            }
+            R.id.nav_Perfil -> {
+                openFragment(PerfilFragment())
+                bottom_change_drawer()
+            }
             R.id.nav_logout -> {
                 // Cambio de actividad
                 val intento = Intent(this, Log_Sign_Main::class.java)
@@ -97,15 +107,10 @@ class Menu_Principal : AppCompatActivity(),
             }
         }
 
-        //Comprueba si la animación ya se ha ejecutado y ha ocultado el BottomNavigation
-        if (binding.bottomNavigation.visibility == View.VISIBLE) {
-            binding.bottomNavigation.startAnimation(slideOutAnimation)
-            binding.bottomNavigation.visibility = View.GONE
-        }
+        // Animación eliminada
 
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
-
     }
 
     @SuppressLint("MissingSuperCall")
@@ -123,9 +128,49 @@ class Menu_Principal : AppCompatActivity(),
 
     override fun Entrada_Bot_Nav() {
         binding.bottomNavigation.visibility = View.VISIBLE
-        binding.bottomNavigation.startAnimation(slideInAnimation)
-
+        // Animación eliminada
     }
 
+    private fun bottom_change_drawer(){
+        // Cambia el menú del BottomNavigationView
+        binding.bottomNavigation.menu.clear()
+        binding.bottomNavigation.inflateMenu(R.menu.bottom_menu_2)
+
+        // Ajusta la posición del BottomNavigationView según sea necesario
+        val layoutParams = binding.bottomNavigation.layoutParams as RelativeLayout.LayoutParams
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START, 0)
+
+        // Ajusta el tamaño al tamaño del botón
+        layoutParams.width = 55.dpToPx() // Cambia 55 al tamaño deseado
+        layoutParams.height = 55.dpToPx() // Cambia 55 al tamaño deseado
+
+        binding.bottomNavigation.layoutParams = layoutParams
+    }
+
+    private fun bottom_change(){
+        // Cambia el menú del BottomNavigationView
+        binding.bottomNavigation.menu.clear()
+        binding.bottomNavigation.inflateMenu(R.menu.bottom_menu)
+
+        // Ajusta la posición del BottomNavigationView según sea necesario
+        val layoutParams = binding.bottomNavigation.layoutParams as RelativeLayout.LayoutParams
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START, 0)
+
+        // Ajusta el tamaño al tamaño del botón
+        layoutParams.width = 600.dpToPx() // Cambia 55 al tamaño deseado
+        layoutParams.height = 55.dpToPx() // Cambia 55 al tamaño deseado
+
+        binding.bottomNavigation.layoutParams = layoutParams
+    }
+
+    // Función de extensión para convertir dp a píxeles
+    private fun Int.dpToPx(): Int {
+        val density = resources.displayMetrics.density
+        return (this * density).toInt()
+    }
 }
 
