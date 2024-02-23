@@ -60,8 +60,11 @@ class Menu_Principal : AppCompatActivity(),
         //Selección del BottomNavigation
         binding.bottomNavigation.setOnItemSelectedListener{ item ->
             when (item.itemId) {
-                R.id.bottom_home -> {
+                R.id.bottom_home -> openFragment(HomeFragment())
+
+                R.id.bottom_home2 -> {
                     openFragment(HomeFragment())
+                    bottom_change()
                 }
                 R.id.bottom_Plantas -> openFragment(PlantasFragment())
                 R.id.bottom_Animales -> openFragment(AnimalesFragment())
@@ -143,8 +146,8 @@ class Menu_Principal : AppCompatActivity(),
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START, 0)
 
         // Ajusta el tamaño al tamaño del botón
-        layoutParams.width = 55.dpToPx() // Cambia 55 al tamaño deseado
-        layoutParams.height = 55.dpToPx() // Cambia 55 al tamaño deseado
+        layoutParams.width = 60.dpToPx() // Cambia al tamaño deseado
+        layoutParams.height = 55.dpToPx()
 
         binding.bottomNavigation.layoutParams = layoutParams
     }
